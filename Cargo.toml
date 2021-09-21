@@ -1,0 +1,22 @@
+[package]
+name = "systick-monotonic"
+version = "0.1.0-alpha.0"
+authors = [
+  "The Real-Time Interrupt-driven Concurrency developers",
+  "Emil Fresk <emil.fresk@gmail.com>",
+]
+categories = ["concurrency", "embedded", "no-std"]
+description = "RTIC Monotonic implemenation based on Systick running at a fixed 1 kHz rate"
+documentation = "https://docs.rs/systick-monotonic"
+repository = "https://github.com/rtic-rs/systick-monotonic"
+license = "MIT OR Apache-2.0"
+edition = "2018"
+
+[lib]
+name = "systick_monotonic"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "0.7"
+rtic-monotonic = "0.1.0-alpha.2"
