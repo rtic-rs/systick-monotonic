@@ -3,7 +3,8 @@
 
 # `systick-monotonic`
 
-> RTIC monotonic implementation using SysTick at a fixed 1 kHz rate.
+> RTIC monotonic implementation using SysTick. Used for testing the RTIC framework in QEMU.
+> Not designed for usage in real apps.
 
 # [Documentation](https://docs.rs/systick-monotonic)
 
