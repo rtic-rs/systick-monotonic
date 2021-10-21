@@ -19,4 +19,5 @@ name = "systick_monotonic"
 
 [dependencies]
 cortex-m = "0.7"
-rtic-monotonic = "0.1.0-rc.1"
+#rtic-monotonic = "0.1.0-rc.1"
+rtic-monotonic = { path = "../rtic-monotonic" }
