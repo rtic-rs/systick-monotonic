@@ -1,12 +1,16 @@
 //! # `Monotonic` implementation based on SysTick
+//!
+//! Uses [`fugit`] as underlying time library.
+//!
+//! [`fugit`]: https://docs.rs/crate/fugit
 
 #![no_std]
 
 use cortex_m::peripheral::{syst::SystClkSource, SYST};
+pub use fugit::{self, ExtU32};
 use rtic_monotonic::Monotonic;
-pub use fugit;
 
-/// Systick implementing `embedded_time::Clock` and `rtic_monotonic::Monotonic` which runs at a
+/// Systick implementing `rtic_monotonic::Monotonic` which runs at a
 /// settable rate using the `TIMER_HZ` parameter.
 pub struct Systick<const TIMER_HZ: u32> {
     systick: SYST,
@@ -34,8 +38,8 @@ impl<const TIMER_HZ: u32> Monotonic for Systick<TIMER_HZ> {
     const DISABLE_INTERRUPT_ON_EMPTY_QUEUE: bool = false;
     const ZERO: Self::Instant = Self::Instant::from_ticks(0);
 
-    type Instant = fugit::aliases::TimerInstantU32<TIMER_HZ>;
-    type Duration = fugit::Duration<u32, 1, TIMER_HZ>;
+    type Instant = fugit::TimerInstantU32<TIMER_HZ>;
+    type Duration = fugit::TimerDurationU32<TIMER_HZ>;
 
     fn now(&mut self) -> Self::Instant {
         if self.systick.has_wrapped() {
@@ -45,17 +49,19 @@ impl<const TIMER_HZ: u32> Monotonic for Systick<TIMER_HZ> {
         Self::Instant::from_ticks(self.cnt)
     }
 
-    fn reset(&mut self) {
+    unsafe fn reset(&mut self) {
         self.systick.set_clock_source(SystClkSource::Core);
         self.systick.set_reload(self.reload);
         self.systick.clear_current();
         self.systick.enable_counter();
     }
 
+    #[inline(always)]
     fn set_compare(&mut self, _val: Self::Instant) {
         // No need to do something here, we get interrupts every tick anyways.
     }
 
+    #[inline(always)]
     fn clear_compare_flag(&mut self) {
         // NOOP with SysTick interrupt
     }
