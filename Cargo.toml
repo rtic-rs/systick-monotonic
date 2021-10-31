@@ -21,4 +21,5 @@ name = "systick_monotonic"
 cortex-m = "0.7"
 # rtic-monotonic = "0.1.0-rc.1"
 rtic-monotonic = { git = "https://github.com/rtic-rs/rtic-monotonic.git", branch = "new-trait" }
-fugit = "0.1.4"
+#fugit = "0.1.4"
+fugit = { git = "https://github.com/korken89/fugit.git", branch = "master" }
