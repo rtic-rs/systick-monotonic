@@ -21,4 +21,4 @@ name = "systick_monotonic"
 cortex-m = "0.7"
 # rtic-monotonic = "0.1.0-rc.1"
 rtic-monotonic = { git = "https://github.com/rtic-rs/rtic-monotonic.git", branch = "new-trait" }
-fugit = "0.3.0"
+embedded-time = { git = "https://github.com/FluenTech/embedded-time.git", branch = "release/v0.13.0" }

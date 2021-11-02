@@ -7,7 +7,9 @@
 #![no_std]
 
 use cortex_m::peripheral::{syst::SystClkSource, SYST};
-pub use fugit::{self, ExtU64};
+pub use embedded_time::{
+    self, clock::Error, duration::Generic, fraction::Fraction, Clock, Instant,
+};
 use rtic_monotonic::Monotonic;
 
 /// Systick implementing `rtic_monotonic::Monotonic` which runs at a
@@ -29,26 +31,34 @@ impl<const TIMER_HZ: u32> Systick<TIMER_HZ> {
         systick.set_clock_source(SystClkSource::Core);
         systick.set_reload(reload);
 
-        Systick {
-            systick,
-            cnt: 0,
-        }
+        Systick { systick, cnt: 0 }
+    }
+}
+
+impl<const TIMER_HZ: u32> Clock for Systick<TIMER_HZ> {
+    type T = u64;
+
+    const SCALING_FACTOR: Fraction = Fraction::new(1, TIMER_HZ);
+
+    #[inline(always)]
+    fn try_now(&self) -> Result<Instant<Self>, Error> {
+        // The instant is always valid
+        Ok(Instant::new(self.cnt))
     }
 }
 
 impl<const TIMER_HZ: u32> Monotonic for Systick<TIMER_HZ> {
     const DISABLE_INTERRUPT_ON_EMPTY_QUEUE: bool = false;
-    const ZERO: Self::Instant = Self::Instant::from_ticks(0);
 
-    type Instant = fugit::TimerInstantU64<TIMER_HZ>;
-    type Duration = fugit::TimerDurationU64<TIMER_HZ>;
+    type Instant = Instant<Self>;
+    type Duration = Generic<u64>;
 
     fn now(&mut self) -> Self::Instant {
         if self.systick.has_wrapped() {
             self.cnt += 1;
         }
 
-        Self::Instant::from_ticks(self.cnt)
+        Self::Instant::new(self.cnt)
     }
 
     unsafe fn reset(&mut self) {
@@ -64,6 +74,11 @@ impl<const TIMER_HZ: u32> Monotonic for Systick<TIMER_HZ> {
     #[inline(always)]
     fn clear_compare_flag(&mut self) {
         // NOOP with SysTick interrupt
+    }
+
+    #[inline(always)]
+    fn zero() -> Self::Instant {
+        Self::Instant::new(0)
     }
 
     fn on_interrupt(&mut self) {
