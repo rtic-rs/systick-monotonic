@@ -1,8 +1,9 @@
-//! # `Monotonic` implementation based on SysTick
+//! # [`Monotonic`] implementation based on SysTick
 //!
 //! Uses [`fugit`] as underlying time library.
 //!
 //! [`fugit`]: https://docs.rs/crate/fugit
+//! [`Monotonic`]: https://docs.rs/rtic-monotonic
 
 #![no_std]
 

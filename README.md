@@ -4,7 +4,7 @@
 # `systick-monotonic`
 
 > RTIC monotonic implementation using SysTick. Used for testing the RTIC framework in QEMU.
-> Not designed for usage in real apps.
+> Can be used in real apps as well, but it has more overhead than a proper `Monotonic` implementation.
 
 # [Documentation](https://docs.rs/systick-monotonic)
 
