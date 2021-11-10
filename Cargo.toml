@@ -10,7 +10,7 @@ description = "RTIC Monotonic implemenation based on Systick running at a fixed 
 documentation = "https://docs.rs/systick-monotonic"
 repository = "https://github.com/rtic-rs/systick-monotonic"
 license = "MIT OR Apache-2.0"
-edition = "2018"
+edition = "2021"
 
 [lib]
 name = "systick_monotonic"
