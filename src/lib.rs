@@ -21,8 +21,9 @@ pub struct Systick<const TIMER_HZ: u32> {
 impl<const TIMER_HZ: u32> Systick<TIMER_HZ> {
     /// Provide a new `Monotonic` based on SysTick.
     ///
-    /// Note that the `sysclk` parameter should come from e.g. the HAL's clock generation function
-    /// so the real speed and the declared speed can be compared.
+    /// Note that the `sysclk` parameter should come from e.g. the HAL's clock
+    /// generation function so the real speed and the declared speed can be
+    /// compared.
     pub fn new(mut systick: SYST, sysclk: u32) -> Self {
         let reload = (sysclk + TIMER_HZ / 2) / TIMER_HZ - 1;
 
@@ -55,7 +56,7 @@ impl<const TIMER_HZ: u32> Monotonic for Systick<TIMER_HZ> {
 
     #[inline(always)]
     fn set_compare(&mut self, _val: Self::Instant) {
-        // No need to do something here, we get interrupts every tick anyways.
+        // No need to do something here, we get interrupts anyway.
     }
 
     #[inline(always)]
