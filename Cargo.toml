@@ -6,7 +6,7 @@ authors = [
   "Emil Fresk <emil.fresk@gmail.com>",
 ]
 categories = ["concurrency", "embedded", "no-std"]
-description = "RTIC Monotonic implemenation based on Systick running at a fixed 1 kHz rate"
+description = "RTIC Monotonic implementation based on SysTick"
 documentation = "https://docs.rs/systick-monotonic"
 repository = "https://github.com/rtic-rs/systick-monotonic"
 license = "MIT OR Apache-2.0"
