@@ -21,11 +21,18 @@ pub struct Systick<const TIMER_HZ: u32> {
 impl<const TIMER_HZ: u32> Systick<TIMER_HZ> {
     /// Provide a new `Monotonic` based on SysTick.
     ///
-    /// Note that the `sysclk` parameter should come from e.g. the HAL's clock
-    /// generation function so the real speed and the declared speed can be
-    /// compared.
+    /// The `sysclk` parameter is the speed at which SysTick runs at. This value should come from
+    /// the clock generation function of the used HAL.
+    ///
+    /// Notice that the actual rate of the timer is a best approximation based on the given
+    /// `sysclk` and `TIMER_HZ`.
     pub fn new(mut systick: SYST, sysclk: u32) -> Self {
+        // + TIMER_HZ / 2 provides round to nearest instead of round to 0.
+        // - 1 as the counter range is inclusive [0, reload]
         let reload = (sysclk + TIMER_HZ / 2) / TIMER_HZ - 1;
+
+        assert!(reload <= 0x00ff_ffff);
+        assert!(reload > 0);
 
         systick.disable_counter();
         systick.set_clock_source(SystClkSource::Core);

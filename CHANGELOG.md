@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Improved documentation on `new()`
+
+### Added
+
+- Asserts to check the `reload` value
+
+### Changed
+
 ## [v1.0.0] - 2021-12-25
 
 ### Changed
