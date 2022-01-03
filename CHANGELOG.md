@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Asserts to check the `reload` value
+- CI changelog entry enforcer
 
 ### Changed
 
