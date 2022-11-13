@@ -76,6 +76,7 @@ impl<const TIMER_HZ: u32> Monotonic for Systick<TIMER_HZ> {
         Self::Instant::from_ticks(0)
     }
 
+    #[inline(always)]
     fn on_interrupt(&mut self) {
         if self.systick.has_wrapped() {
             self.cnt = self.cnt.wrapping_add(1);

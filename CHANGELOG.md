@@ -7,12 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-### Fixed
-
-- Improved documentation on `new()`
+## [v1.0.1]
 
 ### Added
 
+- Explicit use of wrapping add for `cnt` counter
 - Asserts to check the `reload` value
 - CI changelog entry enforcer
 
@@ -29,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 Initial release
 
-[Unreleased]: https://github.com/rtic-rs/systick-monotonic/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/rtic-rs/systick-monotonic/compare/v1.0.1...HEAD
+[v1.0.1]: https://github.com/rtic-rs/systick-monotonic/compare/v1.0.0...v1.0.1
 [v1.0.0]: https://github.com/rtic-rs/systick-monotonic/compare/v0.1.0...v1.0.0
 [v0.1.0]: https://github.com/rtic-rs/systick-monotonic/compare/2220d9b...v0.1.0
