@@ -1,6 +1,6 @@
 [package]
 name = "systick-monotonic"
-version = "1.0.1"
+version = "2.0.0"
 authors = [
   "The Real-Time Interrupt-driven Concurrency developers",
   "Emil Fresk <emil.fresk@gmail.com>",
@@ -20,4 +20,4 @@ name = "systick_monotonic"
 [dependencies]
 cortex-m = "0.7"
 rtic-monotonic = "1.0.0"
-fugit = "0.3.0"
+fugit = "0.4.0"

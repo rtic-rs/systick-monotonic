@@ -9,6 +9,8 @@ For each category, *Added*, *Changed*, *Fixed* add new entries at the top!
 
 ## [Unreleased]
 
+## [v2.0.0]
+
 ### Added
 
 - Add Clippy to CI
@@ -17,6 +19,7 @@ For each category, *Added*, *Changed*, *Fixed* add new entries at the top!
 
 ### Changed
 
+- Use `fugit` 0.4
 - Use native GHA rustup and cargo
 
 ## [v1.0.1]
@@ -40,7 +43,8 @@ For each category, *Added*, *Changed*, *Fixed* add new entries at the top!
 
 Initial release
 
-[Unreleased]: https://github.com/rtic-rs/systick-monotonic/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/rtic-rs/systick-monotonic/compare/v2.0.0...HEAD
+[v2.0.0]: https://github.com/rtic-rs/systick-monotonic/compare/v1.0.1...v2.0.0
 [v1.0.1]: https://github.com/rtic-rs/systick-monotonic/compare/v1.0.0...v1.0.1
 [v1.0.0]: https://github.com/rtic-rs/systick-monotonic/compare/v0.1.0...v1.0.0
 [v0.1.0]: https://github.com/rtic-rs/systick-monotonic/compare/2220d9b...v0.1.0
